@@ -9,23 +9,14 @@ import UIKit
 import SnapKit
 
 class SettingsController: UIViewController {
-
-    private let networkSection = [
-        Setting(name: "airplane", iconImage: UIImage(systemName: "airplane")!),
-    ]
-    private let soundsSection = [
-        Setting(name: "airplane", iconImage: UIImage(systemName: "airplane")!),
-    ]
-    private let generalSection = [
-        Setting(name: "apple", iconImage: UIImage(systemName: "airplane")!),
-    ]
+   
     private var settings = [[Setting]]()
 
     // MARK: - Outlets
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
@@ -35,10 +26,10 @@ class SettingsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        settings = [networkSection, soundsSection, generalSection]
+        settings = [Setting.networkSection, Setting.soundsSection, Setting.generalSection]
         view.backgroundColor = .systemBackground
         title = "Настройки"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         setupHierarchy()
         setupLayout()
     }
@@ -74,8 +65,8 @@ extension SettingsController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = settings[indexPath.row].last?.name
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingTableViewCell
+        cell?.setting = settings[indexPath.section][indexPath.row]
+        return cell ?? UITableViewCell()
     }
 }

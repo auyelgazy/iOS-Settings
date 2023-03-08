@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8C71C56729B09F6400125294 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C71C56629B09F6400125294 /* SnapKit */; };
 		8C71C57D29B1CB7000125294 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C71C57C29B1CB7000125294 /* DetailViewController.swift */; };
-		8C71C57F29B2E24900125294 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C71C57E29B2E24900125294 /* CustomTableViewCell.swift */; };
+		8C71C57F29B2E24900125294 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */; };
 		8C8DA28E29B88FE600F53380 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8DA28D29B88FE600F53380 /* Setting.swift */; };
 		8CF63C9A29B07C0F009A0EEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63C9929B07C0F009A0EEB /* AppDelegate.swift */; };
 		8CF63C9C29B07C0F009A0EEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63C9B29B07C0F009A0EEB /* SceneDelegate.swift */; };
@@ -20,7 +20,7 @@
 
 /* Begin PBXFileReference section */
 		8C71C57C29B1CB7000125294 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		8C71C57E29B2E24900125294 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		8C8DA28D29B88FE600F53380 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		8CF63C9629B07C0F009A0EEB /* iOS-Settings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Settings.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CF63C9929B07C0F009A0EEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 			children = (
 				8CF63C9D29B07C0F009A0EEB /* SettingsController.swift */,
 				8C71C57C29B1CB7000125294 /* DetailViewController.swift */,
-				8C71C57E29B2E24900125294 /* CustomTableViewCell.swift */,
+				8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */,
 				8C8DA28D29B88FE600F53380 /* Setting.swift */,
 			);
 			path = App;
@@ -192,7 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CF63C9E29B07C0F009A0EEB /* SettingsController.swift in Sources */,
-				8C71C57F29B2E24900125294 /* CustomTableViewCell.swift in Sources */,
+				8C71C57F29B2E24900125294 /* SettingTableViewCell.swift in Sources */,
 				8C8DA28E29B88FE600F53380 /* Setting.swift in Sources */,
 				8CF63C9A29B07C0F009A0EEB /* AppDelegate.swift in Sources */,
 				8CF63C9C29B07C0F009A0EEB /* SceneDelegate.swift in Sources */,

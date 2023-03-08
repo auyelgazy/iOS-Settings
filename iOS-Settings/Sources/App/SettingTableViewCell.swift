@@ -8,15 +8,25 @@
 import UIKit
 import SnapKit
 
-class CustomTableViewCell: UITableViewCell {
+class SettingTableViewCell: UITableViewCell {
+
+    var setting: Setting? {
+        didSet {
+            nameLabel.text = setting?.name
+            detailLabel.text = setting?.detail
+            iconImageView.image = setting?.iconImage
+        }
+    }
 
     // MARK: - Outlets
 
-    private lazy var iconView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        return view
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = .orange
+        imageView.tintColor = .white
+        return imageView
     }()
 
     private lazy var nameLabel: UILabel = {
@@ -50,19 +60,32 @@ class CustomTableViewCell: UITableViewCell {
 
     private func setupHierarchy() {
         contentView.addSubviews(
-            iconView,
+            iconImageView,
             nameLabel,
             detailLabel
         )
     }
 
     private func setupLayout() {
+        iconImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(contentView).offset(16)
+            $0.width.height.equalTo(30)
+        }
 
+        nameLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(iconImageView.snp.trailing).offset(16)
+        }
+
+        detailLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalTo(contentView.snp.trailing).offset(-10)
+        }
     }
-
-    // MARK: - Reuse
-
 }
+
+// MARK: - Extensions
 
 extension UIView {
     func addSubviews(_ subviews: UIView...) {
