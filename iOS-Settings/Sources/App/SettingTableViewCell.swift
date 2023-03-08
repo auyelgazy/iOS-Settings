@@ -15,17 +15,22 @@ class SettingTableViewCell: UITableViewCell {
             nameLabel.text = setting?.name
             detailLabel.text = setting?.detail
             iconImageView.image = setting?.iconImage
+            iconBackgroundView.backgroundColor = setting?.iconColor
         }
     }
-
+ 
     // MARK: - Outlets
+
+    private lazy var iconBackgroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5
+        return view
+    }()
 
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 5
-        imageView.clipsToBounds = true
-        imageView.backgroundColor = .orange
         imageView.tintColor = .white
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
@@ -59,18 +64,27 @@ class SettingTableViewCell: UITableViewCell {
     // MARK: - Setup
 
     private func setupHierarchy() {
+        iconBackgroundView.addSubview(iconImageView)
         contentView.addSubviews(
-            iconImageView,
+            iconBackgroundView,
             nameLabel,
             detailLabel
         )
     }
 
     private func setupLayout() {
-        iconImageView.snp.makeConstraints {
+        iconBackgroundView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(contentView).offset(16)
             $0.width.height.equalTo(30)
+        }
+
+        iconImageView.snp.makeConstraints {
+//            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().offset(3)
+            $0.trailing.equalToSuperview().offset(-3)
+            $0.bottom.equalToSuperview().offset(-3)
+            $0.leading.equalToSuperview().offset(3)
         }
 
         nameLabel.snp.makeConstraints {

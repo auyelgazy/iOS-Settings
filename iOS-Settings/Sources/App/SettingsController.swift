@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class SettingsController: UIViewController {
-   
+
     private var settings = [[Setting]]()
 
     // MARK: - Outlets
@@ -29,7 +29,7 @@ class SettingsController: UIViewController {
         settings = [Setting.networkSection, Setting.soundsSection, Setting.generalSection]
         view.backgroundColor = .systemBackground
         title = "Настройки"
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = true
         setupHierarchy()
         setupLayout()
     }
@@ -46,7 +46,7 @@ class SettingsController: UIViewController {
         }
     }
 
-    // MARK: - Actions
+//     MARK: - Actions
 }
 
 // MARK: - Extensions
@@ -65,8 +65,16 @@ extension SettingsController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingTableViewCell
-        cell?.setting = settings[indexPath.section][indexPath.row]
-        return cell ?? UITableViewCell()
+       let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingTableViewCell
+       let cellType = settings[indexPath.section][indexPath.row].type
+       let switcher = UISwitch(frame: CGRectZero) as UISwitch
+       switch cellType {
+       case .switcher:
+           cell?.accessoryView = switcher
+       default:
+           cell?.accessoryType = .disclosureIndicator
+       }
+       cell?.setting = settings[indexPath.section][indexPath.row]
+       return cell ?? UITableViewCell()
     }
 }
