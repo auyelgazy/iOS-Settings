@@ -80,7 +80,6 @@ class SettingTableViewCell: UITableViewCell {
         }
 
         iconImageView.snp.makeConstraints {
-//            $0.centerY.equalToSuperview()
             $0.top.equalToSuperview().offset(3)
             $0.trailing.equalToSuperview().offset(-3)
             $0.bottom.equalToSuperview().offset(-3)
@@ -96,6 +95,14 @@ class SettingTableViewCell: UITableViewCell {
             $0.centerY.equalToSuperview()
             $0.trailing.equalTo(contentView.snp.trailing).offset(-10)
         }
+    }
+
+    // MARK: - Reuse
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.accessoryType = .none
+        self.setting = nil
     }
 }
 

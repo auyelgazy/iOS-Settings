@@ -29,7 +29,6 @@ class SettingsController: UIViewController {
         settings = [Setting.networkSection, Setting.soundsSection, Setting.generalSection]
         view.backgroundColor = .systemBackground
         title = "Настройки"
-        navigationController?.navigationBar.prefersLargeTitles = true
         setupHierarchy()
         setupLayout()
     }
@@ -45,8 +44,6 @@ class SettingsController: UIViewController {
             $0.top.right.bottom.left.equalTo(view)
         }
     }
-
-//     MARK: - Actions
 }
 
 // MARK: - Extensions
@@ -65,16 +62,23 @@ extension SettingsController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingTableViewCell
-       let cellType = settings[indexPath.section][indexPath.row].type
-       let switcher = UISwitch(frame: CGRectZero) as UISwitch
-       switch cellType {
-       case .switcher:
-           cell?.accessoryView = switcher
-       default:
-           cell?.accessoryType = .disclosureIndicator
-       }
-       cell?.setting = settings[indexPath.section][indexPath.row]
-       return cell ?? UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingTableViewCell
+        let cellType = settings[indexPath.section][indexPath.row].type
+        let switcher = UISwitch(frame: CGRectZero) as UISwitch
+        switch cellType {
+        case .switcher:
+            cell?.accessoryView = switcher
+        default:
+            cell?.accessoryType = .disclosureIndicator
+        }
+        cell?.setting = settings[indexPath.section][indexPath.row]
+        return cell ?? UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let detailVC = DetailViewController()
+        detailVC.setting = settings[indexPath.section][indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
