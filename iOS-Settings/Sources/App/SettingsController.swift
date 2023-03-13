@@ -8,9 +8,20 @@
 import UIKit
 import SnapKit
 
-class SettingsController: UIViewController {
+final class SettingsController: UIViewController {
 
-    private var settings = [[Setting]]()
+    private let settings: [[Setting]]
+
+    // MARK: - Initializers
+    
+    init(settings: [[Setting]] = [Setting.networkSection, Setting.soundsSection, Setting.generalSection]) {
+        self.settings = settings
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - Outlets
 
@@ -26,15 +37,17 @@ class SettingsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        settings = [Setting.networkSection, Setting.soundsSection, Setting.generalSection]
-        view.backgroundColor = .systemBackground
-        title = "Настройки"
         setupHierarchy()
         setupLayout()
     }
 
     // MARK: - Setup
 
+    private func setupView() {
+        view.backgroundColor = .systemBackground
+        title = "Настройки"
+    }
+    
     private func setupHierarchy() {
         view.addSubview(tableView)
     }
@@ -50,7 +63,7 @@ class SettingsController: UIViewController {
 
 extension SettingsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        50
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,7 +71,7 @@ extension SettingsController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings[section].count
+        settings[section].count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,6 +81,7 @@ extension SettingsController: UITableViewDataSource, UITableViewDelegate {
         switch cellType {
         case .switcher:
             cell?.accessoryView = switcher
+            cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         default:
             cell?.accessoryType = .disclosureIndicator
         }
@@ -76,9 +90,11 @@ extension SettingsController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if settings[indexPath.section][indexPath.row].type == .switcher {
+            return
+        }
         tableView.deselectRow(at: indexPath, animated: true)
-        let detailVC = DetailViewController()
-        detailVC.setting = settings[indexPath.section][indexPath.row]
+        let detailVC = DetailViewController(setting: settings[indexPath.section][indexPath.row])
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

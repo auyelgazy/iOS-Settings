@@ -8,14 +8,16 @@
 import UIKit
 import SnapKit
 
-class SettingTableViewCell: UITableViewCell {
+final class SettingTableViewCell: UITableViewCell {
 
     var setting: Setting? {
         didSet {
-            nameLabel.text = setting?.name
-            detailLabel.text = setting?.detail
-            iconImageView.image = setting?.iconImage
-            iconBackgroundView.backgroundColor = setting?.iconColor
+            guard let setting = setting else { return }
+            nameLabel.text = setting.name
+            detailLabel.text = setting.detail
+            iconBackgroundView.backgroundColor = setting.iconColor.getColor
+            let iconImageName = setting.iconImageName
+            iconImageView.image = setting.hasIconSystemName ? UIImage(systemName: iconImageName) : UIImage(named: iconImageName)
         }
     }
  
@@ -103,6 +105,7 @@ class SettingTableViewCell: UITableViewCell {
         super.prepareForReuse()
         self.accessoryType = .none
         self.setting = nil
+        self.accessoryView = nil
     }
 }
 
