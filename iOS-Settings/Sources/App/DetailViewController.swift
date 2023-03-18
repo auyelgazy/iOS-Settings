@@ -10,24 +10,23 @@ import SnapKit
 
 final class DetailViewController: UIViewController {
 
-    private let setting: Setting?
+    private let setting: Setting
 
     // MARK: - Initializers
 
-    init(setting: Setting?) {
+    init(setting: Setting) {
         self.setting = setting
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
-        fatalError()
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Outlets
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        guard let setting = setting else { return UIImageView() }
         imageView.image = setting.hasIconSystemName ? UIImage(systemName: setting.iconImageName) : UIImage(named: setting.iconImageName)
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -46,7 +45,7 @@ final class DetailViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .lightGray
-        title = setting?.name
+        title = setting.name
     }
 
     private func setupHierarchy() {

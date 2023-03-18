@@ -75,24 +75,12 @@ extension SettingsController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingTableViewCell
-        let cellType = settings[indexPath.section][indexPath.row].type
-        let switcher = UISwitch(frame: CGRectZero) as UISwitch
-        switch cellType {
-        case .switcher:
-            cell?.accessoryView = switcher
-            cell?.selectionStyle = UITableViewCell.SelectionStyle.none
-        default:
-            cell?.accessoryType = .disclosureIndicator
-        }
-        cell?.setting = settings[indexPath.section][indexPath.row]
-        return cell ?? UITableViewCell()
+        let cell = SettingTableViewCell(setting: settings[indexPath.section][indexPath.row], reuseIdentifier: "cell")
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if settings[indexPath.section][indexPath.row].type == .switcher {
-            return
-        }
+        guard settings[indexPath.section][indexPath.row].type != .switcher else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         let detailVC = DetailViewController(setting: settings[indexPath.section][indexPath.row])
         navigationController?.pushViewController(detailVC, animated: true)
