@@ -10,10 +10,12 @@ import SnapKit
 
 final class SettingsView: UIView {
 
+    var settings = [[Setting]]()
+
     // MARK: - Configuration
 
-    func configureView(with model: Setting) {
-
+    func configureView(with model: [[Setting]]) {
+        self.settings = model
     }
 
     // MARK: - UI Elements
@@ -38,6 +40,12 @@ final class SettingsView: UIView {
         commonInit()
     }
 
+    private func commonInit() {
+        backgroundColor = .systemBackground
+        setupHierarchy()
+        setupLayout()
+    }
+
     // MARK: - Setup
 
     private func setupHierarchy() {
@@ -48,11 +56,5 @@ final class SettingsView: UIView {
         tableView.snp.makeConstraints {
             $0.top.right.bottom.left.equalTo(self)
         }
-    }
-
-    private func commonInit() {
-        backgroundColor = .systemBackground
-        setupHierarchy()
-        setupLayout()
     }
 }

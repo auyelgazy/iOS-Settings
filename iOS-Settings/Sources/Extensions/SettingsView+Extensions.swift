@@ -8,6 +8,7 @@
 import UIKit
 
 extension SettingsView: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         50
     }
@@ -29,6 +30,6 @@ extension SettingsView: UITableViewDataSource, UITableViewDelegate {
         guard settings[indexPath.section][indexPath.row].type != .switcher else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         let detailVC = DetailViewController(setting: settings[indexPath.section][indexPath.row])
-        navigationController?.pushViewController(detailVC, animated: true)
+        self.window?.rootViewController?.present(detailVC, animated: true)
     }
 }

@@ -72,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				8CF4794329CAD82D0000C6E9 /* SettingsView.swift */,
+				8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -81,7 +82,6 @@
 			children = (
 				8CF63C9D29B07C0F009A0EEB /* SettingsController.swift */,
 				8C71C57C29B1CB7000125294 /* DetailViewController.swift */,
-				8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

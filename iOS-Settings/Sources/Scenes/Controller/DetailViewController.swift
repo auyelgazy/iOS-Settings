@@ -45,7 +45,6 @@ final class DetailViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .lightGray
-        title = setting.name
     }
 
     private func setupHierarchy() {

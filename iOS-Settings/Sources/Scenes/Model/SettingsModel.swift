@@ -8,10 +8,11 @@
 import Foundation
 
 final class SettingsModel {
-
-    func createModels() -> [Setting] {
+    func createModels() -> [[Setting]] {
         return [
-            Setting(type: .plain, name: "Режим модема",  iconImage:  "personalhotspot", iconColor: .green),
+            Setting.networkSection,
+            Setting.soundsSection,
+            Setting.generalSection
         ]
     }
 }
