@@ -10,6 +10,13 @@ import SnapKit
 
 final class SettingsController: UIViewController {
 
+    private var settingsView: SettingsView? {
+        guard isViewLoaded else { return nil }
+        return view as? SettingsView
+    }
+
+    var model: SettingsModel?
+
     private let settings: [[Setting]]
 
     // MARK: - Initializers
@@ -37,6 +44,9 @@ final class SettingsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        model = SettingsModel()
+        view = SettingsView()
+        setupView()
         setupHierarchy()
         setupLayout()
     }
@@ -61,28 +71,13 @@ final class SettingsController: UIViewController {
 
 // MARK: - Extensions
 
-extension SettingsController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        50
-    }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        settings.count
-    }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        settings[section].count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = SettingTableViewCell(setting: settings[indexPath.section][indexPath.row], reuseIdentifier: "cell")
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard settings[indexPath.section][indexPath.row].type != .switcher else { return }
-        tableView.deselectRow(at: indexPath, animated: true)
-        let detailVC = DetailViewController(setting: settings[indexPath.section][indexPath.row])
-        navigationController?.pushViewController(detailVC, animated: true)
+private extension SettingsController {
+    func configureView() {
+        guard let models = model?.createModels() else { return }
+        models.forEach { [unowned self] model in
+            settingsView?.configureView(with: model)
+        }
     }
 }
