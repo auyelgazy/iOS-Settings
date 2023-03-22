@@ -11,6 +11,9 @@
 		8C71C57D29B1CB7000125294 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C71C57C29B1CB7000125294 /* DetailViewController.swift */; };
 		8C71C57F29B2E24900125294 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */; };
 		8C8DA28E29B88FE600F53380 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8DA28D29B88FE600F53380 /* Setting.swift */; };
+		8CF4794429CAD82D0000C6E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF4794329CAD82D0000C6E9 /* SettingsView.swift */; };
+		8CF4794629CAD9A70000C6E9 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF4794529CAD9A70000C6E9 /* SettingsModel.swift */; };
+		8CF4794A29CAE1410000C6E9 /* SettingsView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF4794929CAE1410000C6E9 /* SettingsView+Extensions.swift */; };
 		8CF63C9A29B07C0F009A0EEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63C9929B07C0F009A0EEB /* AppDelegate.swift */; };
 		8CF63C9C29B07C0F009A0EEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63C9B29B07C0F009A0EEB /* SceneDelegate.swift */; };
 		8CF63C9E29B07C0F009A0EEB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63C9D29B07C0F009A0EEB /* SettingsController.swift */; };
@@ -22,6 +25,9 @@
 		8C71C57C29B1CB7000125294 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		8C8DA28D29B88FE600F53380 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		8CF4794329CAD82D0000C6E9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8CF4794529CAD9A70000C6E9 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		8CF4794929CAE1410000C6E9 /* SettingsView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+Extensions.swift"; sourceTree = "<group>"; };
 		8CF63C9629B07C0F009A0EEB /* iOS-Settings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Settings.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CF63C9929B07C0F009A0EEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CF63C9B29B07C0F009A0EEB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +49,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8CF4793F29CAD7750000C6E9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8CF4794029CAD7830000C6E9 /* Model */,
+				8CF4794129CAD7870000C6E9 /* View */,
+				8CF4794229CAD78C0000C6E9 /* Controller */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		8CF4794029CAD7830000C6E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C8DA28D29B88FE600F53380 /* Setting.swift */,
+				8CF4794529CAD9A70000C6E9 /* SettingsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8CF4794129CAD7870000C6E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CF4794329CAD82D0000C6E9 /* SettingsView.swift */,
+				8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8CF4794229CAD78C0000C6E9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8CF63C9D29B07C0F009A0EEB /* SettingsController.swift */,
+				8C71C57C29B1CB7000125294 /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8CF4794829CAE0A20000C6E9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8CF4794929CAE1410000C6E9 /* SettingsView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8CF63C8D29B07C0F009A0EEB = {
 			isa = PBXGroup;
 			children = (
@@ -71,10 +122,10 @@
 		8CF63CAD29B07C98009A0EEB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8CF63C9929B07C0F009A0EEB /* AppDelegate.swift */,
-				8CF63C9B29B07C0F009A0EEB /* SceneDelegate.swift */,
+				8CF4794829CAE0A20000C6E9 /* Extensions */,
 				8CF63CB029B07CBC009A0EEB /* Storyboards */,
 				8CF63CB129B07CC2009A0EEB /* App */,
+				8CF4793F29CAD7750000C6E9 /* Scenes */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -107,10 +158,8 @@
 		8CF63CB129B07CC2009A0EEB /* App */ = {
 			isa = PBXGroup;
 			children = (
-				8CF63C9D29B07C0F009A0EEB /* SettingsController.swift */,
-				8C71C57C29B1CB7000125294 /* DetailViewController.swift */,
-				8C71C57E29B2E24900125294 /* SettingTableViewCell.swift */,
-				8C8DA28D29B88FE600F53380 /* Setting.swift */,
+				8CF63C9929B07C0F009A0EEB /* AppDelegate.swift */,
+				8CF63C9B29B07C0F009A0EEB /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -191,10 +240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF4794629CAD9A70000C6E9 /* SettingsModel.swift in Sources */,
 				8CF63C9E29B07C0F009A0EEB /* SettingsController.swift in Sources */,
 				8C71C57F29B2E24900125294 /* SettingTableViewCell.swift in Sources */,
 				8C8DA28E29B88FE600F53380 /* Setting.swift in Sources */,
+				8CF4794429CAD82D0000C6E9 /* SettingsView.swift in Sources */,
 				8CF63C9A29B07C0F009A0EEB /* AppDelegate.swift in Sources */,
+				8CF4794A29CAE1410000C6E9 /* SettingsView+Extensions.swift in Sources */,
 				8CF63C9C29B07C0F009A0EEB /* SceneDelegate.swift in Sources */,
 				8C71C57D29B1CB7000125294 /* DetailViewController.swift in Sources */,
 			);
