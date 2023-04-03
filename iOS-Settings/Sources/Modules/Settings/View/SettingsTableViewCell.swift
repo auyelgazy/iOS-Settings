@@ -1,29 +1,26 @@
 //
-//  CustomTableViewCell.swift
+//  SettingsCell.swift
 //  iOS-Settings
 //
-//  Created by Kuanysh al-Khattab Auyelgazy on 04.03.2023.
+//  Created by Kuanysh al-Khattab Auyelgazy on 03.04.2023.
 //
 
 import UIKit
-import SnapKit
 
-final class SettingTableViewCell: UITableViewCell {
+class SettingTableViewCell: UITableViewCell {
 
-    private let setting: Setting
- 
-    // MARK: - Outlets
+    static let identifier = "cell"
+
+    // MARK: - UI
 
     private lazy var iconBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
-        view.backgroundColor = setting.iconColor.getColor
         return view
     }()
 
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = setting.hasIconSystemName ? UIImage(systemName: setting.iconImageName) : UIImage(named: setting.iconImageName)
         imageView.tintColor = .white
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -31,7 +28,6 @@ final class SettingTableViewCell: UITableViewCell {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = setting.name
         label.textColor = .label
         label.font = .systemFont(ofSize: 18)
         return label
@@ -39,7 +35,6 @@ final class SettingTableViewCell: UITableViewCell {
 
     private lazy var detailLabel: UILabel = {
         let label = UILabel()
-        label.text = setting.detail
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 16)
         return label
@@ -50,13 +45,10 @@ final class SettingTableViewCell: UITableViewCell {
         return switcher
     }()
 
+    // MARK: - Init
 
-    // MARK: - Initializers
-
-    init(setting: Setting, reuseIdentifier: String?) {
-        self.setting = setting
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        setupAccesoryView()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupHierarchy()
         setupLayout()
     }
@@ -66,16 +58,6 @@ final class SettingTableViewCell: UITableViewCell {
     }
 
     // MARK: - Setup
-
-    private func setupAccesoryView() {
-        switch setting.type {
-        case .switcher:
-            accessoryView = switcher
-            selectionStyle = UITableViewCell.SelectionStyle.none
-        default:
-            accessoryType = .disclosureIndicator
-        }
-    }
 
     private func setupHierarchy() {
         iconBackgroundView.addSubview(iconImageView)
@@ -111,7 +93,20 @@ final class SettingTableViewCell: UITableViewCell {
         }
     }
 
-    // MARK: - Reuse
+    func configureCell(with model: Setting?) {
+        guard let model = model else { return }
+        switch model.type {
+            case .switcher:
+                accessoryView = switcher
+                selectionStyle = UITableViewCell.SelectionStyle.none
+            default:
+                accessoryType = .disclosureIndicator
+        }
+        iconBackgroundView.backgroundColor = model.iconColor.getColor
+        iconImageView.image = model.hasIconSystemName ? UIImage(systemName: model.iconImageName) : UIImage(named: model.iconImageName)
+        nameLabel.text = model.name
+        detailLabel.text = model.detail
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -119,8 +114,6 @@ final class SettingTableViewCell: UITableViewCell {
         self.accessoryView = nil
     }
 }
-
-// MARK: - Extensions
 
 extension UIView {
     func addSubviews(_ subviews: UIView...) {

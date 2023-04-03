@@ -7,29 +7,33 @@
 
 import UIKit
 
-extension SettingsView: UITableViewDataSource, UITableViewDelegate {
-    
+extension SettingsView: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         50
     }
 
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        "s"
+//    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        settings.count
+        presenter.getSectionCount
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        settings[section].count
+        presenter.getItemCount(section: section)
+//        print("!!!", section)
+//        return 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = SettingTableViewCell(setting: settings[indexPath.section][indexPath.row], reuseIdentifier: "cell")
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell
+        cell?.configureCell(with: presenter.getDataByIndex(indexPath.section, indexPath.row))
+        return cell ?? UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard settings[indexPath.section][indexPath.row].type != .switcher else { return }
-        tableView.deselectRow(at: indexPath, animated: true)
-        let detailVC = DetailViewController(setting: settings[indexPath.section][indexPath.row])
-        self.window?.rootViewController?.present(detailVC, animated: true)
+
     }
 }
