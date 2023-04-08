@@ -7,4 +7,6 @@
 
 import Foundation
 
-protocol SettingsRouterInterface: AnyObject { }
+protocol SettingsRouterInterface: AnyObject {
+    func navigateToDetails(delegate: SettingDetailDelegate, setting: Setting)
+}

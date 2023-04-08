@@ -93,6 +93,8 @@ class SettingTableViewCell: UITableViewCell {
         }
     }
 
+    // MARK: - Actions
+
     func configureCell(with model: Setting?) {
         guard let model = model else { return }
         switch model.type {
@@ -108,15 +110,11 @@ class SettingTableViewCell: UITableViewCell {
         detailLabel.text = model.detail
     }
 
+    // MARK: - Reuse
+
     override func prepareForReuse() {
         super.prepareForReuse()
         self.accessoryType = .none
         self.accessoryView = nil
-    }
-}
-
-extension UIView {
-    func addSubviews(_ subviews: UIView...) {
-        subviews.forEach { addSubview($0) }
     }
 }

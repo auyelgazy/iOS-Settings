@@ -15,8 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let rootVC = SettingsRouter.createModule(using: UINavigationController())
-        let navigationController = UINavigationController(rootViewController: rootVC)
+        let navigationController = UINavigationController(rootViewController: SettingsBuilder.build())
+        navigationController.navigationBar.prefersLargeTitles = false
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

@@ -9,13 +9,11 @@ import UIKit
 
 final class SettingsRouter: SettingsRouterInterface {
 
-    static func createModule(using navigationController: UINavigationController) -> SettingsView {
-        let router = SettingsRouter()
-        let view = SettingsView()
-        let interactor = SettingsInteractor()
-        let presenter = SettingsPresenter(view: view, router: router, interactor: interactor)
-        view.presenter = presenter
-        return view
+    weak var viewController: UIViewController?
+
+    func navigateToDetails(delegate: SettingDetailDelegate, setting: Setting) {
+        viewController?.navigationController?.pushViewController(SettingDetailBuilder.build(delegate: delegate,
+                                                                  setting: setting), animated: true)
     }
 
 //    func navigateToSettingDetails(_ setting: Setting) {

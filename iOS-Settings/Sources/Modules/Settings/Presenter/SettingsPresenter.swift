@@ -9,10 +9,14 @@ import Foundation
 
 final class SettingsPresenter {
 
+    // MARK: - Properties
+
     private weak var view: SettingsViewInterface?
     private var router: SettingsRouterInterface?
     private var interactor: SettingsInteractorInterface?
     private var datas: [[Setting]]?
+
+    // MARK: - Init
 
     init(view: SettingsViewInterface?, router: SettingsRouterInterface?, interactor: SettingsInteractorInterface?) {
         self.view = view
@@ -23,6 +27,8 @@ final class SettingsPresenter {
 
 extension SettingsPresenter: SettingsPresenterInterface {
 
+    // MARK: - Actions
+
     func notifyViewDidLoad() {
         view?.setupView()
         view?.setupHierarchy()
@@ -31,11 +37,7 @@ extension SettingsPresenter: SettingsPresenterInterface {
         fetchDatas()
     }
 
-    func getDataByIndex(_ section: Int, _ index: Int) -> Setting? {
-//        print(datas![section][index].name)
-//        print("Sectinon:  \(section)")
-//        print("Index: \(index)")
-//        print("end - - - - - - \n")
+    func getSetting(_ section: Int, _ index: Int) -> Setting? {
         return datas?[section][index]
     }
 
@@ -47,7 +49,12 @@ extension SettingsPresenter: SettingsPresenterInterface {
         datas?.count ?? 0
     }
 
-    func getItemCount(section: Int) -> Int {
+    func getItemCount(in section: Int) -> Int {
         datas?[section].count ?? 0
+    }
+
+    func didTableViewSelectRow(indexPath: IndexPath) {
+        guard let setting = datas[indexPath.section][indexPath.row] else { return }
+        
     }
 }

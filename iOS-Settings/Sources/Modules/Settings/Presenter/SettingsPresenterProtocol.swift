@@ -9,8 +9,9 @@ import Foundation
 
 protocol SettingsPresenterInterface: AnyObject {
     func notifyViewDidLoad() -> Void
-    func getDataByIndex(_ section: Int, _ index: Int) -> Setting?
+    func getSetting(_ section: Int, _ index: Int) -> Setting?
     func fetchDatas() -> Void
-    func getItemCount(section: Int) -> Int
+    func getItemCount(in section: Int) -> Int
     var getSectionCount: Int { get }
+    func didTableViewSelectRow(indexPath: IndexPath)
 }
