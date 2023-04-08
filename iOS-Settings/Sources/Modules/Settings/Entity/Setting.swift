@@ -2,12 +2,10 @@
 //  Setting.swift
 //  iOS-Settings
 //
-//  Created by Kuanysh al-Khattab Auyelgazy on 08.03.2023.
+//  Created by Kuanysh al-Khattab Auyelgazy on 03.04.2023.
 //
 
 import UIKit
-
-// MARK: - Enums
 
 enum SettingType {
     case plain
@@ -47,8 +45,6 @@ enum Color: String {
     }
 }
 
-// MARK: - Structure
-
 struct Setting {
     let type: SettingType
     let name: String
@@ -66,8 +62,6 @@ struct Setting {
         self.hasIconSystemName = hasIconSystemName
     }
 }
-
-// MARK: - Extensions
 
 extension Setting {
     static let networkSection = [
